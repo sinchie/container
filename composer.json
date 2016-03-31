@@ -1,0 +1,15 @@
+{
+    "name": "dawn/container",
+    "authors": [
+        {
+            "name": "dawn",
+            "email": "250810491@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Omg": "src"
+        }
+    }
+}
