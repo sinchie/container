@@ -1,6 +1,6 @@
 <?php
 
-namespace Omg;
+namespace Boomdawn;
 
 class Container
 {
