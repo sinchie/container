@@ -88,35 +88,35 @@ class Container
 
         //反射
         try {
-            $reflect_class = new \ReflectionClass($className);
+            $reflectClass = new \ReflectionClass($className);
         } catch (\ReflectionException $e) {
             throw new \ReflectionException(sprintf('Class "%s" does not exist', $className));
         }
 
         //如果有构造方法
-        if ($constructor = $reflect_class->getConstructor()) {
+        if ($constructor = $reflectClass->getConstructor()) {
             //如果构造方法中有参数
             if ($params = $constructor->getParameters()) {
                 //遍历构造方法参数
-                $obj_params = [];
+                $objParams = [];
                 foreach ($params as $key => $param) {
                     //如果参数是对象
                     if ($interface = $param->getClass()) {
                         //从容器中取出所依赖的对象
-                        $obj_params[] = $this->useClassNameGetInstance($interface->name);
+                        $objParams[] = $this->useClassNameGetInstance($interface->name);
                     }
                 }
             }
             // 注入对象
-            if (isset($obj_params)) {
-                return $reflect_class->newInstanceArgs(array_merge($obj_params, $args));
+            if (!empty($objParams)) {
+                return $reflectClass->newInstanceArgs(array_merge($objParams, $args));
             }
         }
         //没有构造方法
         if (empty($args)) {
-            return $reflect_class->newInstance();
+            return $reflectClass->newInstance();
         }
-        return $reflect_class->newInstanceArgs($args);
+        return $reflectClass->newInstanceArgs($args);
     }
 
     /**
