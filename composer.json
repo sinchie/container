@@ -6,7 +6,9 @@
             "email": "250810491@qq.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=5.4"
+    },
     "autoload": {
         "psr-4": {
             "Boomdawn\\": "src"
